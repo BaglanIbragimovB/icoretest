@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Update card</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+</head>
+<body>
+<div class="container my-5">
+    <h2 class="mb-5">Обновить уд.личности</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="#" th:action="@{/identitycard/update/{id}(id=${icard.id})}" th:object="${icard}" method="post">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="user" class="col-form-label">ФИО</label>
+                        <select th:field="*{user}" class="form-control" id="user">
+                            <!--option th:value="''" th:text="Select"></option-->
+                            <option th:each="i : ${userRoleOptions}" th:value="${i.id}" th:text="${i.lastname}  + ' '+ ${i.firstname} + ' '+ ${i.patronymic}" th:selected="${i.id} == ${icard.id}"></option>
+                        </select>
+                        <span th:if="${#fields.hasErrors('documentType')}" th:errors="*{documentType}" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="documentType" class="col-form-label">Тип документа</label>
+                        <input type="text" th:field="*{documentType}" class="form-control" id="documentType" placeholder="Тип документа">
+                        <span th:if="${#fields.hasErrors('documentType')}" th:errors="*{documentType}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="documentOrgan" class="col-form-label">Орган выдавший документ</label>
+                        <input type="text" th:field="*{documentOrgan}" class="form-control" id="documentOrgan" placeholder="Орган выдавший документ">
+                        <span th:if="${#fields.hasErrors('documentOrgan')}" th:errors="*{documentOrgan}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="dateIssue" class="col-form-label">Дата выдачи</label>
+                        <input type="text" th:field="*{dateIssue}" class="form-control" id="dateIssue" placeholder="Дата выдачи">
+                        <span th:if="${#fields.hasErrors('dateIssue')}" th:errors="*{dateIssue}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="dateDue" class="col-form-label">Дата истечения срока</label>
+                        <input type="text" th:field="*{dateDue}" class="form-control" id="dateDue" placeholder="Дата истечения срока">
+                        <span th:if="${#fields.hasErrors('dateDue')}" th:errors="*{dateDue}" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-5">
+                        <input type="submit" class="btn btn-primary" value="Обновить">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

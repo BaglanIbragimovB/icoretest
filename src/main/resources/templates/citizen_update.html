@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Update citizen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+</head>
+<body>
+<div class="container my-5">
+    <h2 class="mb-5">Обновить гражданина</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="#" th:action="@{/citizen/update/{id}(id=${user.id})}" th:object="${user}" method="post">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="lastname" class="col-form-label">Фамилия</label>
+                        <input type="text" th:field="*{lastname}" class="form-control" id="lastname" placeholder="Фамилия">
+                        <span th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="firstname" class="col-form-label">Имя</label>
+                        <input type="text" th:field="*{firstname}" class="form-control" id="firstname" placeholder="Имя">
+                        <span th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="patronymic" class="col-form-label">Отчество</label>
+                        <input type="text" th:field="*{patronymic}" class="form-control" id="patronymic" placeholder="Отчество">
+                        <span th:if="${#fields.hasErrors('patronymic')}" th:errors="*{patronymic}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="birthddate" class="col-form-label">Дата рождения</label>
+                        <input type="text" th:field="*{birthddate}" class="form-control" id="birthddate" placeholder="Дата рождения">
+                        <span th:if="${#fields.hasErrors('birthddate')}" th:errors="*{birthddate}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="sex" class="col-form-label">Пол</label>
+                        <select th:field="*{sex}" class="form-control" id="sex">
+                            <option th:value="'M'" th:text="М"></option>
+                            <option th:value="'F'" th:text="Ж"></option>
+                        </select>
+                        <span th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="address" class="col-form-label">Место житьельства</label>
+                        <input type="text" th:field="*{address}" class="form-control" id="address" placeholder="Место жительства">
+                        <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="text-danger"></span>
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-5">
+                        <input type="submit" class="btn btn-primary" value="Обновить">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
